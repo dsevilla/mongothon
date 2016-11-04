@@ -29,13 +29,15 @@ from mongothon import Schema
 car_schema = Schema({
     "make":         {"type": basestring, "required": True},
     "model":        {"type": basestring, "required": True},
-    "num_wheels":   {"type": int,        "default": 4, "validates": gte(0)}
+    "num_wheels":   {"type": int,        "default": 4, "validates": gte(0)},
     "color":        {"type": basestring, "validates": one_of("red", "green", "blue")}
 })
 ```
 
 Generate a reusable model class from the Schema and pymongo collection:
 ```python
+from mongothon import create_model
+
 Car = create_model(car_schema, db['car'])
 ```
 
