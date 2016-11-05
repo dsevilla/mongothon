@@ -13,8 +13,11 @@ def _module_name_from_previous_frame(num_frames_back):
     should be given relative to the caller.
     """
     frm = inspect.stack()[num_frames_back + 1]
-    module = None #inspect.getmodule(frm[0])
-    return module.__name__ if module else None
+    module = inspect.getmodule(frm[0])
+    if module:
+        return module.__name__
+    else:
+        return None
 
 
 def create_model(schema, collection, class_name=None):
