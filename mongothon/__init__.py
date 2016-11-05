@@ -13,7 +13,7 @@ def _module_name_from_previous_frame(num_frames_back):
     should be given relative to the caller.
     """
     frm = inspect.stack()[num_frames_back + 1]
-    module = inspect.getmodule(frm[0])
+    module = None #inspect.getmodule(frm[0])
     return module.__name__ if module else None
 
 
